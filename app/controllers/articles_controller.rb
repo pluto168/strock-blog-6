@@ -9,6 +9,9 @@ class ArticlesController < ApplicationController
         @article = Article.new
     end
 
+    def edit
+        @article = Article.find(params[:id])
+    end
     def create
         #rander plain: params[:article]
         @article = Article.new(params.require(:article).permit(:title,:description))
@@ -20,5 +23,15 @@ class ArticlesController < ApplicationController
         else
             render 'new' #重新填表單
         end
+    end
+
+    def update
+       @article = Article.find(params[:id])
+       if @article.update(params.require(:article).permit(:title,:description))
+        flash[:notice] = "Article was updated successfully."
+        redirect_to @article 
+       else
+        render 'edit'
+       end
     end
 end
