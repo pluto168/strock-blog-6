@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
     #執行操作前，先到set
 
     def show
-        #@article = Article.find(params[:id])
+        # redirect_to article_path(@article)
     end
     def index
         @articles = Article.all
@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-        #@article = Article.find(params[:id])
+       # redirect_to article_path(@article)
     end
     def create
         #rander plain: params[:article]
@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
         #render plain: @article.inspect
         if @article.save
             flash[:notice] = "Article was creared successfully!"
-            #redirect_to article_path(@article)
+            # redirect_to article_path(@article)
             redirect_to @article
         else
             render 'new' #重新填表單
