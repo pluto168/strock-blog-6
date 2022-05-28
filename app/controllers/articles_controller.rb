@@ -20,6 +20,8 @@ class ArticlesController < ApplicationController
         #rander plain: params[:article]
         @article = Article.new(article_params)  #params.require(:article).permit(:title,:description) =>參數
 
+        @article.user = User.first
+
         #render plain: @article.inspect
         if @article.save
             flash[:notice] = "Article was creared successfully!"
