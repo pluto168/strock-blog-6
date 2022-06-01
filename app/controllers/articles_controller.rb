@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
         #rander plain: params[:article]
         @article = Article.new(article_params)  #params.require(:article).permit(:title,:description) =>參數
 
-        @article.user = User.first
+        @article.user = current_user
 
         #render plain: @article.inspect
         if @article.save
